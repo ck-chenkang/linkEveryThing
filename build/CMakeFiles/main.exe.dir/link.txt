@@ -1,0 +1,1 @@
+/usr/bin/arm-linux-gnueabihf-g++   -Wall -g  -rdynamic CMakeFiles/main.exe.dir/main.cpp.o  -o main.exe 

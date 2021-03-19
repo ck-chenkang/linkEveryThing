@@ -1,0 +1,3 @@
+/home/ck/codes/linkEveryThing/build/CMakeFiles/rebuild_cache.dir
+/home/ck/codes/linkEveryThing/build/CMakeFiles/main.exe.dir
+/home/ck/codes/linkEveryThing/build/CMakeFiles/edit_cache.dir
