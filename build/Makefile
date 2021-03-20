@@ -150,6 +150,33 @@ main.cpp.s:
 	$(MAKE) -f CMakeFiles/main.exe.dir/build.make CMakeFiles/main.exe.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+src/setexAPI.o: src/setexAPI.cpp.o
+
+.PHONY : src/setexAPI.o
+
+# target to build an object file
+src/setexAPI.cpp.o:
+	$(MAKE) -f CMakeFiles/main.exe.dir/build.make CMakeFiles/main.exe.dir/src/setexAPI.cpp.o
+.PHONY : src/setexAPI.cpp.o
+
+src/setexAPI.i: src/setexAPI.cpp.i
+
+.PHONY : src/setexAPI.i
+
+# target to preprocess a source file
+src/setexAPI.cpp.i:
+	$(MAKE) -f CMakeFiles/main.exe.dir/build.make CMakeFiles/main.exe.dir/src/setexAPI.cpp.i
+.PHONY : src/setexAPI.cpp.i
+
+src/setexAPI.s: src/setexAPI.cpp.s
+
+.PHONY : src/setexAPI.s
+
+# target to generate assembly for a file
+src/setexAPI.cpp.s:
+	$(MAKE) -f CMakeFiles/main.exe.dir/build.make CMakeFiles/main.exe.dir/src/setexAPI.cpp.s
+.PHONY : src/setexAPI.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -162,6 +189,9 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... src/setexAPI.o"
+	@echo "... src/setexAPI.i"
+	@echo "... src/setexAPI.s"
 .PHONY : help
 
 

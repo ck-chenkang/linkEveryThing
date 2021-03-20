@@ -6,7 +6,37 @@
 
 #IncludeRegexTransform: 
 
-/home/ck/codes/linkEveryThing/main.cpp
+../include/setexAPI.h
+sys/types.h
+-
+sys/socket.h
+-
+stdio.h
+-
+netinet/in.h
+-
+arpa/inet.h
+-
+unistd.h
+-
+string.h
+-
+stdlib.h
+-
+fcntl.h
+-
+sys/shm.h
+-
 iostream
 -
+unistd.h
+-
+
+/home/ck/codes/linkEveryThing/main.cpp
+setexAPI.h
+/home/ck/codes/linkEveryThing/setexAPI.h
+
+/home/ck/codes/linkEveryThing/src/setexAPI.cpp
+setexAPI.h
+/home/ck/codes/linkEveryThing/src/setexAPI.h
 

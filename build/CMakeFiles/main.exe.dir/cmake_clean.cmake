@@ -1,5 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/main.exe.dir/main.cpp.o"
+  "CMakeFiles/main.exe.dir/src/setexAPI.cpp.o"
   "main.exe.pdb"
   "main.exe"
 )
