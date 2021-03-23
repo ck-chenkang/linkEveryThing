@@ -1,15 +1,6 @@
 #include "setexAPI.h"
 
-using namespace std;
-setexAPI::setexAPI(/* args */)
-{
-}
-
-setexAPI::~setexAPI()
-{
-}
-
-int setexAPI::initialize(const char *deviceip)
+int initialize(const char *deviceip)
 {
     const char *ip = deviceip;
 
@@ -34,19 +25,19 @@ int setexAPI::initialize(const char *deviceip)
 
     if (rc < 0)
     {
-        cout << "connect status: false " << endl;
+        
         if (sockHandle >= 0)
         {
             close(sockHandle);
         }
         return -1;
     }
-    cout << "connect status: true " << endl;
+    
 
     return 0;
 }
 
-int setexAPI::getPictureLayers(int *ch)
+int getPictureLayers(int *ch)
 {
     int bytesRecv;
     char buffR[BUFFER_SIZE];
@@ -91,7 +82,7 @@ int setexAPI::getPictureLayers(int *ch)
     }
 }
 
-int setexAPI::setPictureLayers(int *ch)
+int setPictureLayers(int *ch)
 {
     int bytesRecv;
     char buffR[BUFFER_SIZE];
@@ -136,7 +127,7 @@ int setexAPI::setPictureLayers(int *ch)
     return 0;
 }
 
-int setexAPI::getInfoWord(int index, int &value)
+int getInfoWord(int index, int* value)
 {
     if (index < 1 || index > 200)
         return -1;
@@ -181,12 +172,12 @@ int setexAPI::getInfoWord(int index, int &value)
     {
         int value1 = (unsigned char)buffR[20];
         int value2 = (unsigned char)buffR[21];
-        value = value2 * 256 + value1;
+        *value = value2 * 256 + value1;
         return 0;
     }
 }
 
-int setexAPI::setInfoWord(int index, int value)
+int setInfoWord(int index, int value)
 {
     if (index < 1 || index > 200)
         return -1;
@@ -236,7 +227,7 @@ int setexAPI::setInfoWord(int index, int value)
     }
 }
 
-int setexAPI::getInfoDoubleWord(int index, unsigned &value)
+int getInfoDoubleWord(int index, unsigned *value)
 {
     if (index < 1 || index > 500)
         return -1;
@@ -282,12 +273,12 @@ int setexAPI::getInfoDoubleWord(int index, unsigned &value)
         int value2 = (unsigned char)buffR[21];
         int value3 = (unsigned char)buffR[22];
         int value4 = (unsigned char)buffR[23];
-        value = value1 + value2 * 256 + value3 * 256 * 256 + value4 * 256 * 256 * 256;
+        *value = value1 + value2 * 256 + value3 * 256 * 256 + value4 * 256 * 256 * 256;
         return 0;
     }
 }
 
-int setexAPI::setInfoDoubleWord(int index, unsigned value)
+int setInfoDoubleWord(int index, unsigned value)
 {
     if (index < 1 || index > 500)
         return -1;
@@ -342,7 +333,7 @@ int setexAPI::setInfoDoubleWord(int index, unsigned value)
     }
 }
 
-int setexAPI::getInfoBit(int index, bool &value)
+int getInfoBit(int index, int *value)
 {
     if (index < 1 || index > 500)
         return -1;
@@ -385,12 +376,12 @@ int setexAPI::getInfoBit(int index, bool &value)
     else
     {
         int data = buffR[20];
-        value = data;
+        *value = data;
         return 0;
     }
 }
 
-int setexAPI::setInfoBit(int index, bool value)
+int setInfoBit(int index, int value)
 {
     if (index < 1 || index > 500)
         return -1;
@@ -442,7 +433,7 @@ int setexAPI::setInfoBit(int index, bool value)
     }
 }
 
-int setexAPI::getFunctionInitMarker(int index, bool &value)
+int getFunctionInitMarker(int index, int *value)
 {
     if (index < 1 || index > 1000)
         return -1;
@@ -485,12 +476,12 @@ int setexAPI::getFunctionInitMarker(int index, bool &value)
     else
     {
         int data = buffR[20];
-        value = data;
+        *value = data;
         return 0;
     }
 }
 
-int setexAPI::setFunctionInitMarker(int index, bool value)
+int setFunctionInitMarker(int index, int value)
 {
     if (index < 1 || index > 1000)
         return -1;
@@ -542,7 +533,7 @@ int setexAPI::setFunctionInitMarker(int index, bool value)
     }
 }
 
-int setexAPI::getFunctionActivationMarker(int index, bool &value)
+int getFunctionActivationMarker(int index, int *value)
 {
     if (index < 1 || index > 1000)
         return -1;
@@ -585,12 +576,12 @@ int setexAPI::getFunctionActivationMarker(int index, bool &value)
     else
     {
         int data = buffR[20];
-        value = data;
+        *value = data;
         return 0;
     }
 }
 
-int setexAPI::setFunctionActivationMarker(int index, bool value)
+int setFunctionActivationMarker(int index, int value)
 {
     if (index < 1 || index > 1000)
         return -1;
@@ -642,7 +633,7 @@ int setexAPI::setFunctionActivationMarker(int index, bool value)
     }
 }
 
-int setexAPI::getFunctionQuitMarker(int index, bool &value)
+int getFunctionQuitMarker(int index, int *value)
 {
     if (index < 1 || index > 1000)
         return -1;
@@ -685,12 +676,12 @@ int setexAPI::getFunctionQuitMarker(int index, bool &value)
     else
     {
         int data = buffR[20];
-        value = data;
+        *value = data;
         return 0;
     }
 }
 
-int setexAPI::setFunctionQuitMarker(int index, bool value)
+int setFunctionQuitMarker(int index, int value)
 {
     if (index < 1 || index > 1000)
         return -1;
@@ -742,7 +733,7 @@ int setexAPI::setFunctionQuitMarker(int index, bool value)
     }
 }
 
-int setexAPI::getValueParameter(int index, int &value)
+int getValueParameter(int index, int *value)
 {
     if (index < 1 || index > 1000)
         return -1;
@@ -786,12 +777,12 @@ int setexAPI::getValueParameter(int index, int &value)
     {
         int value1 = (unsigned char)buffR[20];
         int value2 = (unsigned char)buffR[21];
-        value = value2 * 256 + value1;
+        *value = value2 * 256 + value1;
         return 0;
     }
 }
 
-int setexAPI::setValueParameter(int index, int value)
+int setValueParameter(int index, int value)
 {
     if (index < 1 || index > 1000)
         return -1;
@@ -841,7 +832,7 @@ int setexAPI::setValueParameter(int index, int value)
     }
 }
 
-int setexAPI::getActualValueParameter(int index, int &value)
+int getActualValueParameter(int index, int *value)
 {
     if (index < 1 || index > 1000)
         return -1;
@@ -885,12 +876,12 @@ int setexAPI::getActualValueParameter(int index, int &value)
     {
         int value1 = (unsigned char)buffR[20];
         int value2 = (unsigned char)buffR[21];
-        value = value2 * 256 + value1;
+        *value = value2 * 256 + value1;
         return 0;
     }
 }
 
-int setexAPI::setActualValueParameter(int index, int value)
+int setActualValueParameter(int index, int value)
 {
     if (index < 1 || index > 1000)
         return -1;
@@ -940,7 +931,7 @@ int setexAPI::setActualValueParameter(int index, int value)
     }
 }
 
-int setexAPI::getAlarms(int index, bool &value)
+int getAlarms(int index, int *value)
 {
     if (index < 1 || index > 500)
         return -1;
@@ -985,12 +976,12 @@ int setexAPI::getAlarms(int index, bool &value)
     else
     {
         int data = buffR[26];
-        value = data;
+        *alue = data;
         return 0;
     }
 }
 
-int setexAPI::setAlarms(int index, bool value)
+int setAlarms(int index, int value)
 {
     if (index < 1 || index > 500)
         return -1;
@@ -1042,7 +1033,7 @@ int setexAPI::setAlarms(int index, bool value)
     }
 }
 
-int setexAPI::getAlarms2(int index, bool &value)
+int getAlarms2(int index, int *value)
 {
     if (index < 1001 || index > 2000)
         return -1;
@@ -1087,12 +1078,12 @@ int setexAPI::getAlarms2(int index, bool &value)
     else
     {
         int data = buffR[26];
-        value = data;
+        *value = data;
         return 0;
     }
 }
 
-int setexAPI::setAlarms2(int index, bool value)
+int setAlarms2(int index, int value)
 {
     if (index < 1001 || index > 2000)
         return -1;
@@ -1144,7 +1135,7 @@ int setexAPI::setAlarms2(int index, bool value)
     }
 }
 
-int setexAPI::getControlMarker(int index, bool &value)
+int getControlMarker(int index, int *value)
 {
     if (index < 1 || index > 1000)
         return -1;
@@ -1187,12 +1178,12 @@ int setexAPI::getControlMarker(int index, bool &value)
     else
     {
         int data = buffR[20];
-        value = data;
+        *value = data;
         return 0;
     }
 }
 
-int setexAPI::setControlMarker(int index, bool value)
+int setControlMarker(int index, int value)
 {
     if (index < 1 || index > 1000)
         return -1;
@@ -1244,7 +1235,7 @@ int setexAPI::setControlMarker(int index, bool value)
     }
 }
 
-int setexAPI::getControlWords(int index, int &value)
+int getControlWords(int index, int *value)
 {
     if (index < 1 || index > 200)
         return -1;
@@ -1288,12 +1279,12 @@ int setexAPI::getControlWords(int index, int &value)
     {
         int value1 = (unsigned char)buffR[20];
         int value2 = (unsigned char)buffR[21];
-        value = value2 * 256 + value1;
+        *value = value2 * 256 + value1;
         return 0;
     }
 }
 
-int setexAPI::setControlWords(int index, int value)
+int setControlWords(int index, int value)
 {
     if (index < 1 || index > 200)
         return -1;
@@ -1343,7 +1334,7 @@ int setexAPI::setControlWords(int index, int value)
     }
 }
 
-int setexAPI::getControllerParameter(int index, int &value)
+int getControllerParameter(int index, int *value)
 {
     if (index < 1 || index > 4000)
         return -1;
@@ -1387,12 +1378,12 @@ int setexAPI::getControllerParameter(int index, int &value)
     {
         int value1 = (unsigned char)buffR[20];
         int value2 = (unsigned char)buffR[21];
-        value = value2 * 256 + value1;
+        *value = value2 * 256 + value1;
         return 0;
     }
 }
 
-int setexAPI::setControllerParameter(int index, int value)
+int setControllerParameter(int index, int value)
 {
     if (index < 1 || index > 4000)
         return -1;
@@ -1442,7 +1433,7 @@ int setexAPI::setControllerParameter(int index, int value)
     }
 }
 
-int setexAPI::getTimers(int index, int &value)
+int getTimers(int index, int *value)
 {
     if (index < 1 || index > 500)
         return -1;
@@ -1486,12 +1477,12 @@ int setexAPI::getTimers(int index, int &value)
     {
         int value1 = (unsigned char)buffR[20];
         int value2 = (unsigned char)buffR[21];
-        value = value2 * 256 + value1;
+        *value = value2 * 256 + value1;
         return 0;
     }
 }
 
-int setexAPI::setTimers(int index, int value)
+int setTimers(int index, int value)
 {
     if (index < 1 || index > 500)
         return -1;
@@ -1541,7 +1532,7 @@ int setexAPI::setTimers(int index, int value)
     }
 }
 
-int setexAPI::getMachineConstant(int index, int &value)
+int getMachineConstant(int index, int *value)
 {
     if (index < 1 || index > 500)
         return -1;
@@ -1585,12 +1576,12 @@ int setexAPI::getMachineConstant(int index, int &value)
     {
         int value1 = (unsigned char)buffR[20];
         int value2 = (unsigned char)buffR[21];
-        value = value2 * 256 + value1;
+        *value = value2 * 256 + value1;
         return 0;
     }
 }
 
-int setexAPI::setMachineConstant(int index, int value)
+int setMachineConstant(int index, int value)
 {
     if (index < 1 || index > 500)
         return -1;
@@ -1640,7 +1631,7 @@ int setexAPI::setMachineConstant(int index, int value)
     }
 }
 
-int setexAPI::getBatchParameter(int index, int &value)
+int getBatchParameter(int index, int *value)
 {
     if (index < 1 || index > 50)
         return -1;
@@ -1684,12 +1675,12 @@ int setexAPI::getBatchParameter(int index, int &value)
     {
         int value1 = (unsigned char)buffR[20];
         int value2 = (unsigned char)buffR[21];
-        value = value2 * 256 + value1;
+        *value = value2 * 256 + value1;
         return 0;
     }
 }
 
-int setexAPI::setBatchParameter(int index, int value)
+int setBatchParameter(int index, int value)
 {
     if (index < 1 || index > 50)
         return -1;
@@ -1739,7 +1730,7 @@ int setexAPI::setBatchParameter(int index, int value)
     }
 }
 
-int setexAPI::getBatchParameterDS737(int index, int &value)
+int getBatchParameterDS737(int index, int *value)
 {
     if (index < 1 || index > 50)
         return -1;
@@ -1783,12 +1774,12 @@ int setexAPI::getBatchParameterDS737(int index, int &value)
     {
         int value1 = (unsigned char)buffR[20];
         int value2 = (unsigned char)buffR[21];
-        value = value2 * 256 + value1;
+        *value = value2 * 256 + value1;
         return 0;
     }
 }
 
-int setexAPI::setBatchParameterDS737(int index, int value)
+int setBatchParameterDS737(int index, int value)
 {
     if (index < 1 || index > 50)
         return -1;
@@ -1838,7 +1829,7 @@ int setexAPI::setBatchParameterDS737(int index, int value)
     }
 }
 
-int setexAPI::getBatchParameterNextBatch(int index, int &value)
+int getBatchParameterNextBatch(int index, int *value)
 {
     if (index < 1 || index > 50)
         return -1;
@@ -1882,12 +1873,12 @@ int setexAPI::getBatchParameterNextBatch(int index, int &value)
     {
         int value1 = (unsigned char)buffR[20];
         int value2 = (unsigned char)buffR[21];
-        value = value2 * 256 + value1;
+        *value = value2 * 256 + value1;
         return 0;
     }
 }
 
-int setexAPI::setBatchParameterNextBatch(int index, int value)
+int setBatchParameterNextBatch(int index, int value)
 {
     if (index < 1 || index > 50)
         return -1;
@@ -1937,7 +1928,7 @@ int setexAPI::setBatchParameterNextBatch(int index, int value)
     }
 }
 
-int setexAPI::getMaintenanceCounter(int index, int &value)
+int getMaintenanceCounter(int index, int *value)
 {
     if (index < 1 || index > 200)
         return -1;
@@ -1981,12 +1972,12 @@ int setexAPI::getMaintenanceCounter(int index, int &value)
     {
         int value1 = (unsigned char)buffR[20];
         int value2 = (unsigned char)buffR[21];
-        value = value2 * 256 + value1;
+        *value = value2 * 256 + value1;
         return 0;
     }
 }
 
-int setexAPI::setMaintenanceCounter(int index, int value)
+int setMaintenanceCounter(int index, int value)
 {
     if (index < 1 || index > 200)
         return -1;
@@ -2036,7 +2027,7 @@ int setexAPI::setMaintenanceCounter(int index, int value)
     }
 }
 
-int setexAPI::getActionButtons(int index, bool &value)
+int getActionButtons(int index, int *value)
 {
     if (index < 401 || index > 1000)
         return -1;
@@ -2079,12 +2070,12 @@ int setexAPI::getActionButtons(int index, bool &value)
     else
     {
         int data = buffR[20];
-        value = data;
+        *value = data;
         return 0;
     }
 }
 
-int setexAPI::setActionButtons(int index, bool value)
+int setActionButtons(int index, int value)
 {
     if (index < 401 || index > 1000)
         return -1;
@@ -2134,10 +2125,4 @@ int setexAPI::setActionButtons(int index, bool value)
     {
         return 0;
     }
-}
-
-extern "C" void (*_indexChangedCallBack)(int i) = 0;
-void setexAPI::setNotifyIndexChangeCallBack(void (*indexChangedCallBack)(int i))
-{
-    _indexChangedCallBack = indexChangedCallBack;
 }

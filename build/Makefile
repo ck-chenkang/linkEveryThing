@@ -123,59 +123,59 @@ main.exe/fast:
 	$(MAKE) -f CMakeFiles/main.exe.dir/build.make CMakeFiles/main.exe.dir/build
 .PHONY : main.exe/fast
 
-main.o: main.cpp.o
+main.o: main.c.o
 
 .PHONY : main.o
 
 # target to build an object file
-main.cpp.o:
-	$(MAKE) -f CMakeFiles/main.exe.dir/build.make CMakeFiles/main.exe.dir/main.cpp.o
-.PHONY : main.cpp.o
+main.c.o:
+	$(MAKE) -f CMakeFiles/main.exe.dir/build.make CMakeFiles/main.exe.dir/main.c.o
+.PHONY : main.c.o
 
-main.i: main.cpp.i
+main.i: main.c.i
 
 .PHONY : main.i
 
 # target to preprocess a source file
-main.cpp.i:
-	$(MAKE) -f CMakeFiles/main.exe.dir/build.make CMakeFiles/main.exe.dir/main.cpp.i
-.PHONY : main.cpp.i
+main.c.i:
+	$(MAKE) -f CMakeFiles/main.exe.dir/build.make CMakeFiles/main.exe.dir/main.c.i
+.PHONY : main.c.i
 
-main.s: main.cpp.s
+main.s: main.c.s
 
 .PHONY : main.s
 
 # target to generate assembly for a file
-main.cpp.s:
-	$(MAKE) -f CMakeFiles/main.exe.dir/build.make CMakeFiles/main.exe.dir/main.cpp.s
-.PHONY : main.cpp.s
+main.c.s:
+	$(MAKE) -f CMakeFiles/main.exe.dir/build.make CMakeFiles/main.exe.dir/main.c.s
+.PHONY : main.c.s
 
-src/setexAPI.o: src/setexAPI.cpp.o
+src/setexAPI.o: src/setexAPI.c.o
 
 .PHONY : src/setexAPI.o
 
 # target to build an object file
-src/setexAPI.cpp.o:
-	$(MAKE) -f CMakeFiles/main.exe.dir/build.make CMakeFiles/main.exe.dir/src/setexAPI.cpp.o
-.PHONY : src/setexAPI.cpp.o
+src/setexAPI.c.o:
+	$(MAKE) -f CMakeFiles/main.exe.dir/build.make CMakeFiles/main.exe.dir/src/setexAPI.c.o
+.PHONY : src/setexAPI.c.o
 
-src/setexAPI.i: src/setexAPI.cpp.i
+src/setexAPI.i: src/setexAPI.c.i
 
 .PHONY : src/setexAPI.i
 
 # target to preprocess a source file
-src/setexAPI.cpp.i:
-	$(MAKE) -f CMakeFiles/main.exe.dir/build.make CMakeFiles/main.exe.dir/src/setexAPI.cpp.i
-.PHONY : src/setexAPI.cpp.i
+src/setexAPI.c.i:
+	$(MAKE) -f CMakeFiles/main.exe.dir/build.make CMakeFiles/main.exe.dir/src/setexAPI.c.i
+.PHONY : src/setexAPI.c.i
 
-src/setexAPI.s: src/setexAPI.cpp.s
+src/setexAPI.s: src/setexAPI.c.s
 
 .PHONY : src/setexAPI.s
 
 # target to generate assembly for a file
-src/setexAPI.cpp.s:
-	$(MAKE) -f CMakeFiles/main.exe.dir/build.make CMakeFiles/main.exe.dir/src/setexAPI.cpp.s
-.PHONY : src/setexAPI.cpp.s
+src/setexAPI.c.s:
+	$(MAKE) -f CMakeFiles/main.exe.dir/build.make CMakeFiles/main.exe.dir/src/setexAPI.c.s
+.PHONY : src/setexAPI.c.s
 
 # Help Target
 help:

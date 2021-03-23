@@ -57,67 +57,67 @@ include CMakeFiles/main.exe.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/main.exe.dir/flags.make
 
-CMakeFiles/main.exe.dir/main.cpp.o: CMakeFiles/main.exe.dir/flags.make
-CMakeFiles/main.exe.dir/main.cpp.o: ../main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ck/codes/linkEveryThing/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/main.exe.dir/main.cpp.o"
-	/usr/bin/arm-linux-gnueabihf-g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.exe.dir/main.cpp.o -c /home/ck/codes/linkEveryThing/main.cpp
+CMakeFiles/main.exe.dir/main.c.o: CMakeFiles/main.exe.dir/flags.make
+CMakeFiles/main.exe.dir/main.c.o: ../main.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ck/codes/linkEveryThing/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/main.exe.dir/main.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/main.exe.dir/main.c.o   -c /home/ck/codes/linkEveryThing/main.c
 
-CMakeFiles/main.exe.dir/main.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main.exe.dir/main.cpp.i"
-	/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ck/codes/linkEveryThing/main.cpp > CMakeFiles/main.exe.dir/main.cpp.i
+CMakeFiles/main.exe.dir/main.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/main.exe.dir/main.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/ck/codes/linkEveryThing/main.c > CMakeFiles/main.exe.dir/main.c.i
 
-CMakeFiles/main.exe.dir/main.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main.exe.dir/main.cpp.s"
-	/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ck/codes/linkEveryThing/main.cpp -o CMakeFiles/main.exe.dir/main.cpp.s
+CMakeFiles/main.exe.dir/main.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/main.exe.dir/main.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/ck/codes/linkEveryThing/main.c -o CMakeFiles/main.exe.dir/main.c.s
 
-CMakeFiles/main.exe.dir/main.cpp.o.requires:
+CMakeFiles/main.exe.dir/main.c.o.requires:
 
-.PHONY : CMakeFiles/main.exe.dir/main.cpp.o.requires
+.PHONY : CMakeFiles/main.exe.dir/main.c.o.requires
 
-CMakeFiles/main.exe.dir/main.cpp.o.provides: CMakeFiles/main.exe.dir/main.cpp.o.requires
-	$(MAKE) -f CMakeFiles/main.exe.dir/build.make CMakeFiles/main.exe.dir/main.cpp.o.provides.build
-.PHONY : CMakeFiles/main.exe.dir/main.cpp.o.provides
+CMakeFiles/main.exe.dir/main.c.o.provides: CMakeFiles/main.exe.dir/main.c.o.requires
+	$(MAKE) -f CMakeFiles/main.exe.dir/build.make CMakeFiles/main.exe.dir/main.c.o.provides.build
+.PHONY : CMakeFiles/main.exe.dir/main.c.o.provides
 
-CMakeFiles/main.exe.dir/main.cpp.o.provides.build: CMakeFiles/main.exe.dir/main.cpp.o
+CMakeFiles/main.exe.dir/main.c.o.provides.build: CMakeFiles/main.exe.dir/main.c.o
 
 
-CMakeFiles/main.exe.dir/src/setexAPI.cpp.o: CMakeFiles/main.exe.dir/flags.make
-CMakeFiles/main.exe.dir/src/setexAPI.cpp.o: ../src/setexAPI.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ck/codes/linkEveryThing/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/main.exe.dir/src/setexAPI.cpp.o"
-	/usr/bin/arm-linux-gnueabihf-g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.exe.dir/src/setexAPI.cpp.o -c /home/ck/codes/linkEveryThing/src/setexAPI.cpp
+CMakeFiles/main.exe.dir/src/setexAPI.c.o: CMakeFiles/main.exe.dir/flags.make
+CMakeFiles/main.exe.dir/src/setexAPI.c.o: ../src/setexAPI.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ck/codes/linkEveryThing/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/main.exe.dir/src/setexAPI.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/main.exe.dir/src/setexAPI.c.o   -c /home/ck/codes/linkEveryThing/src/setexAPI.c
 
-CMakeFiles/main.exe.dir/src/setexAPI.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main.exe.dir/src/setexAPI.cpp.i"
-	/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ck/codes/linkEveryThing/src/setexAPI.cpp > CMakeFiles/main.exe.dir/src/setexAPI.cpp.i
+CMakeFiles/main.exe.dir/src/setexAPI.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/main.exe.dir/src/setexAPI.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/ck/codes/linkEveryThing/src/setexAPI.c > CMakeFiles/main.exe.dir/src/setexAPI.c.i
 
-CMakeFiles/main.exe.dir/src/setexAPI.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main.exe.dir/src/setexAPI.cpp.s"
-	/usr/bin/arm-linux-gnueabihf-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ck/codes/linkEveryThing/src/setexAPI.cpp -o CMakeFiles/main.exe.dir/src/setexAPI.cpp.s
+CMakeFiles/main.exe.dir/src/setexAPI.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/main.exe.dir/src/setexAPI.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/ck/codes/linkEveryThing/src/setexAPI.c -o CMakeFiles/main.exe.dir/src/setexAPI.c.s
 
-CMakeFiles/main.exe.dir/src/setexAPI.cpp.o.requires:
+CMakeFiles/main.exe.dir/src/setexAPI.c.o.requires:
 
-.PHONY : CMakeFiles/main.exe.dir/src/setexAPI.cpp.o.requires
+.PHONY : CMakeFiles/main.exe.dir/src/setexAPI.c.o.requires
 
-CMakeFiles/main.exe.dir/src/setexAPI.cpp.o.provides: CMakeFiles/main.exe.dir/src/setexAPI.cpp.o.requires
-	$(MAKE) -f CMakeFiles/main.exe.dir/build.make CMakeFiles/main.exe.dir/src/setexAPI.cpp.o.provides.build
-.PHONY : CMakeFiles/main.exe.dir/src/setexAPI.cpp.o.provides
+CMakeFiles/main.exe.dir/src/setexAPI.c.o.provides: CMakeFiles/main.exe.dir/src/setexAPI.c.o.requires
+	$(MAKE) -f CMakeFiles/main.exe.dir/build.make CMakeFiles/main.exe.dir/src/setexAPI.c.o.provides.build
+.PHONY : CMakeFiles/main.exe.dir/src/setexAPI.c.o.provides
 
-CMakeFiles/main.exe.dir/src/setexAPI.cpp.o.provides.build: CMakeFiles/main.exe.dir/src/setexAPI.cpp.o
+CMakeFiles/main.exe.dir/src/setexAPI.c.o.provides.build: CMakeFiles/main.exe.dir/src/setexAPI.c.o
 
 
 # Object files for target main.exe
 main_exe_OBJECTS = \
-"CMakeFiles/main.exe.dir/main.cpp.o" \
-"CMakeFiles/main.exe.dir/src/setexAPI.cpp.o"
+"CMakeFiles/main.exe.dir/main.c.o" \
+"CMakeFiles/main.exe.dir/src/setexAPI.c.o"
 
 # External object files for target main.exe
 main_exe_EXTERNAL_OBJECTS =
 
-main.exe: CMakeFiles/main.exe.dir/main.cpp.o
-main.exe: CMakeFiles/main.exe.dir/src/setexAPI.cpp.o
+main.exe: CMakeFiles/main.exe.dir/main.c.o
+main.exe: CMakeFiles/main.exe.dir/src/setexAPI.c.o
 main.exe: CMakeFiles/main.exe.dir/build.make
 main.exe: CMakeFiles/main.exe.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/ck/codes/linkEveryThing/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable main.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/ck/codes/linkEveryThing/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking C executable main.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/main.exe.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -125,8 +125,8 @@ CMakeFiles/main.exe.dir/build: main.exe
 
 .PHONY : CMakeFiles/main.exe.dir/build
 
-CMakeFiles/main.exe.dir/requires: CMakeFiles/main.exe.dir/main.cpp.o.requires
-CMakeFiles/main.exe.dir/requires: CMakeFiles/main.exe.dir/src/setexAPI.cpp.o.requires
+CMakeFiles/main.exe.dir/requires: CMakeFiles/main.exe.dir/main.c.o.requires
+CMakeFiles/main.exe.dir/requires: CMakeFiles/main.exe.dir/src/setexAPI.c.o.requires
 
 .PHONY : CMakeFiles/main.exe.dir/requires
 

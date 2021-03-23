@@ -1,1 +1,1 @@
-/usr/bin/arm-linux-gnueabihf-g++   -Wall -O3 -DNDEBUG  -rdynamic CMakeFiles/main.exe.dir/main.cpp.o CMakeFiles/main.exe.dir/src/setexAPI.cpp.o  -o main.exe 
+/usr/bin/cc  -Wall -g  -rdynamic CMakeFiles/main.exe.dir/main.c.o CMakeFiles/main.exe.dir/src/setexAPI.c.o  -o main.exe 

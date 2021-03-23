@@ -1,16 +1,16 @@
 # The set of languages for which implicit dependencies are needed:
 set(CMAKE_DEPENDS_LANGUAGES
-  "CXX"
+  "C"
   )
 # The set of files for implicit dependencies of each language:
-set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/ck/codes/linkEveryThing/main.cpp" "/home/ck/codes/linkEveryThing/build/CMakeFiles/main.exe.dir/main.cpp.o"
-  "/home/ck/codes/linkEveryThing/src/setexAPI.cpp" "/home/ck/codes/linkEveryThing/build/CMakeFiles/main.exe.dir/src/setexAPI.cpp.o"
+set(CMAKE_DEPENDS_CHECK_C
+  "/home/ck/codes/linkEveryThing/main.c" "/home/ck/codes/linkEveryThing/build/CMakeFiles/main.exe.dir/main.c.o"
+  "/home/ck/codes/linkEveryThing/src/setexAPI.c" "/home/ck/codes/linkEveryThing/build/CMakeFiles/main.exe.dir/src/setexAPI.c.o"
   )
-set(CMAKE_CXX_COMPILER_ID "GNU")
+set(CMAKE_C_COMPILER_ID "GNU")
 
 # The include file search paths:
-set(CMAKE_CXX_TARGET_INCLUDE_PATH
+set(CMAKE_C_TARGET_INCLUDE_PATH
   "../include"
   )
 
