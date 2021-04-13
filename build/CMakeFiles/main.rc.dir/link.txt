@@ -1,0 +1,1 @@
+arm-linux-gnueabihf-gcc   -Wall -std=c99 -g   CMakeFiles/main.rc.dir/main.c.o  -o main.rc -rdynamic -ldl 

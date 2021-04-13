@@ -1,0 +1,133 @@
+#include <stdlib.h>
+#include <stdio.h>
+#include <stdbool.h>
+#include <dlfcn.h>
+#include <string.h>
+
+#include "config.h"
+#include "setexAPI.h"
+#include "http.h"
+
+
+struct configStruct localConfig;
+int infoWordArr[200];
+int infoDoubleWordArr[20];
+int infoBitArr[15];
+int valueParameterArr[320];       //set value
+int actualValueParameterArr[320]; // actual value
+// int functionInitMarkerArr[1000];
+int functionActivationArr[1000];
+int functionQuitMarkerArr[1000];
+int alarmsArr[500];
+int batchParameterArr[20];
+int batchParameterNextBatchArr[20];
+
+char infoWordStr[2001];
+
+void loadSetexData();
+void dealInfoWord(int *midInfoWordArr, char *midInfoWordStr);
+
+void testLoadFile()
+{
+    localConfig = loadconfig();
+}
+
+int main()
+{
+    printf("Programming is stating.....\n");
+    // puts("httpTest:");
+    // httpTest();
+    // printf("\n");
+    puts("httpPostTest");
+    httpPostTest();
+    printf("\n");
+    puts("getToken:");
+    getToken();
+    printf("\n");
+    printf("Programming is ending.....\n");
+    return 0;
+}
+
+void loadSetexData()
+{
+    int ch[10] = {0, 1, 0, 0, 1, 0, 0, 1, 1, 1};
+    const char *deviceip = localConfig.deviceIp;
+
+    int value = 0;
+    unsigned uvalue;
+
+    printf("%s\n", deviceip);
+    int result = initialize(deviceip);
+    printf("%d\n", result);
+
+    printf("getPictureLayers: %d\n", getPictureLayers(ch));
+    printf("setPictureLayers: %d\n", setPictureLayers(ch));
+
+    for (int i = 1; i <= 199; i++)
+    {
+        getInfoWord(i, &value);
+        printf("index: %d, value: %d\n", i, value);
+        infoWordArr[i] = value;
+    }
+    dealInfoWord(infoWordArr, infoWordStr);
+    printf("%s\n", infoWordStr);
+}
+
+void dealInfoWord(int *midInfoWordArr, char midInfoWordStr[2001])
+{
+    int midInfoValue = 0;
+    int midInfoWordStrIndex = 0;
+    char midArr[6];
+    int midArrIndex = 0;
+    int remainder = 0;
+
+    midInfoWordStr[midInfoWordStrIndex] = '[';
+    midInfoWordStrIndex++;
+
+    for (int i = 1; i <= 199; i++)
+    {
+        midInfoValue = midInfoWordArr[i];
+
+        if (midInfoValue == 0)
+        {
+            midInfoWordStr[midInfoWordStrIndex] = (char)(midInfoValue + 48);
+            midInfoWordStrIndex++;
+
+            if (i == 199)
+            {
+                midInfoWordStr[midInfoWordStrIndex] = ']';
+                continue;
+            }
+            midInfoWordStr[midInfoWordStrIndex] = ',';
+            midInfoWordStrIndex++;
+            continue;
+        }
+
+        remainder = midInfoValue % 10;
+        midArr[midArrIndex] = (char)(remainder + 48);
+
+        while ((midInfoValue = midInfoValue / 10) > 0)
+        {
+            midArrIndex++;
+            remainder = midInfoValue % 10;
+            midArr[midArrIndex] = (char)(remainder + 48);
+        }
+
+        while (midArrIndex >= 0)
+        {
+            midInfoWordStr[midInfoWordStrIndex] = midArr[midArrIndex];
+            midInfoWordStrIndex++;
+            midArrIndex--;
+        }
+        if (i == 199)
+        {
+            midInfoWordStr[midInfoWordStrIndex] = ']';
+            continue;
+        }
+        midInfoWordStr[midInfoWordStrIndex] = ',';
+        midInfoWordStrIndex++;
+        midArrIndex = 0;
+    }
+    midInfoWordArr = NULL;
+    midInfoWordStr = NULL;
+}

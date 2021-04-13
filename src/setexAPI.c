@@ -976,7 +976,7 @@ int getAlarms(int index, int *value)
     else
     {
         int data = buffR[26];
-        *alue = data;
+        *value = data;
         return 0;
     }
 }

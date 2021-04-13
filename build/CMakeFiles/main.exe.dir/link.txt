@@ -1,1 +1,1 @@
-/usr/bin/cc  -Wall -g  -rdynamic CMakeFiles/main.exe.dir/main.c.o CMakeFiles/main.exe.dir/src/setexAPI.c.o  -o main.exe 
+arm-linux-gnueabihf-gcc   -Wall -std=c99 -g   CMakeFiles/main.exe.dir/main.c.o  -o main.exe -rdynamic -ldl 

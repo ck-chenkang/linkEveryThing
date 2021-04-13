@@ -3,6 +3,24 @@
         "string": "cpp",
         "memory": "cpp",
         "sstream": "cpp",
-        "ostream": "cpp"
+        "ostream": "cpp",
+        "datahubedge.h": "c",
+        "curl.h": "c",
+        "cstdlib": "cpp",
+        "http.h": "c",
+        "edge_inc.h": "c",
+        "cjson.h": "c",
+        "cctype": "c",
+        "climits": "c",
+        "cmath": "c",
+        "cstdarg": "c",
+        "cstdint": "c",
+        "cstdio": "c",
+        "type_traits": "c",
+        "limits": "c",
+        "*.tcc": "c",
+        "cstdbool": "c",
+        "typeinfo": "c",
+        "stdbool.h": "c"
     }
 }
