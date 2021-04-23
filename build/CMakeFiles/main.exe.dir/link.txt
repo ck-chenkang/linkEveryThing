@@ -1,1 +1,1 @@
-arm-linux-gnueabihf-gcc   -Wall -std=c99 -g   CMakeFiles/main.exe.dir/main.c.o  -o main.exe -rdynamic -ldl 
+/usr/bin/cc   -Wall -std=c99 -g   CMakeFiles/main.exe.dir/main.c.o CMakeFiles/main.exe.dir/src/connectConfig.c.o CMakeFiles/main.exe.dir/src/cJSON.c.o CMakeFiles/main.exe.dir/src/setexdata.c.o CMakeFiles/main.exe.dir/src/setexAPI.c.o  -o main.exe -rdynamic -ldl -lpthread 

@@ -1,0 +1,14 @@
+{
+    "nodeid": "7a62a307-d191-41d6-b341-5c83421c99b6",
+    "credentialKey": "d2f103cc2dfdc5dedf6c988972922d0a",
+    "devices": {
+        "count": 1,
+        "connectInfo": 
+        [
+            {
+                "name": "F01",
+                "ip": "192.168.13.201"
+            }
+        ]
+    }
+}

@@ -1,6 +1,6 @@
 #include "setexAPI.h"
 
-int initialize(const char *deviceip)
+int initialize(const char *deviceip,int sockHandleIndex, int tagindex)
 {
     const char *ip = deviceip;
 
@@ -8,8 +8,8 @@ int initialize(const char *deviceip)
 
     // int port = 50000;
     //定义sockfd
-    sockHandle = socket(AF_INET, SOCK_STREAM, 0);
-    if (sockHandle < 0)
+    sockHandle[sockHandleIndex][tagindex] = socket(AF_INET, SOCK_STREAM, 0);
+    if (sockHandle[sockHandleIndex][tagindex] < 0)
     {
         return -1;
     }
@@ -21,14 +21,14 @@ int initialize(const char *deviceip)
     serverSockAddr.sin_addr.s_addr = inet_addr(ip); //服务器ip，inet_addr用于IPv4的IP转换（十进制转换为二进制）
 
     //连接服务器，成功返回0，错误返回-1
-    int rc = connect(sockHandle, (struct sockaddr *)&serverSockAddr, sizeof(serverSockAddr));
+    int rc = connect(sockHandle[sockHandleIndex][tagindex], (struct sockaddr *)&serverSockAddr, sizeof(serverSockAddr));
 
     if (rc < 0)
     {
         
-        if (sockHandle >= 0)
+        if (sockHandle[sockHandleIndex][tagindex] >= 0)
         {
-            close(sockHandle);
+            close(sockHandle[sockHandleIndex][tagindex]);
         }
         return -1;
     }
@@ -37,7 +37,7 @@ int initialize(const char *deviceip)
     return 0;
 }
 
-int getPictureLayers(int *ch)
+int getPictureLayers(int *ch,int sockHandleIndex, int tagindex)
 {
     int bytesRecv;
     char buffR[BUFFER_SIZE];
@@ -63,10 +63,10 @@ int getPictureLayers(int *ch)
     buffS[22] = 0x0a;
     buffS[23] = 0x00;
 
-    send(sockHandle, buffS, BUFFER_SIZE, 0);
+    send(sockHandle[sockHandleIndex][tagindex], buffS, BUFFER_SIZE, 0);
 
     usleep(10);
-    bytesRecv = recv(sockHandle, buffR, BUFFER_SIZE, 0);
+    bytesRecv = recv(sockHandle[sockHandleIndex][tagindex], buffR, BUFFER_SIZE, 0);
 
     if (bytesRecv < 0)
     {
@@ -82,7 +82,7 @@ int getPictureLayers(int *ch)
     }
 }
 
-int setPictureLayers(int *ch)
+int setPictureLayers(int *ch,int sockHandleIndex, int tagindex)
 {
     int bytesRecv;
     char buffR[BUFFER_SIZE];
@@ -113,11 +113,11 @@ int setPictureLayers(int *ch)
         buffS[i] = ch[i - 24];
     }
 
-    send(sockHandle, buffS, BUFFER_SIZE, 0);
+    send(sockHandle[sockHandleIndex][tagindex], buffS, BUFFER_SIZE, 0);
     usleep(10);
     // usleep(); linux 1 means 1 second
     // cout << "bytesRecv: " << bytesRecv << endl;
-    bytesRecv = recv(sockHandle, buffR, BUFFER_SIZE, 0);
+    bytesRecv = recv(sockHandle[sockHandleIndex][tagindex], buffR, BUFFER_SIZE, 0);
     // cout << "received: " << bytesRecv;
     if (bytesRecv < 0)
     {
@@ -127,7 +127,7 @@ int setPictureLayers(int *ch)
     return 0;
 }
 
-int getInfoWord(int index, int* value)
+int getInfoWord(int index, int* value,int sockHandleIndex, int tagindex)
 {
     if (index < 1 || index > 200)
         return -1;
@@ -160,10 +160,10 @@ int getInfoWord(int index, int* value)
     buffS[22] = 0x00;
     buffS[23] = 0x00;
 
-    send(sockHandle, buffS, BUFFER_SIZE, 0);
+    send(sockHandle[sockHandleIndex][tagindex], buffS, BUFFER_SIZE, 0);
     usleep(10);
 
-    bytesRecv = recv(sockHandle, buffR, BUFFER_SIZE, 0);
+    bytesRecv = recv(sockHandle[sockHandleIndex][tagindex], buffR, BUFFER_SIZE, 0);
     if (bytesRecv < 0)
     {
         return -1;
@@ -177,7 +177,7 @@ int getInfoWord(int index, int* value)
     }
 }
 
-int setInfoWord(int index, int value)
+int setInfoWord(int index, int value,int sockHandleIndex, int tagindex)
 {
     if (index < 1 || index > 200)
         return -1;
@@ -213,10 +213,10 @@ int setInfoWord(int index, int value)
     buffS[22] = value1;
     buffS[23] = value2;
 
-    send(sockHandle, buffS, BUFFER_SIZE, 0);
+    send(sockHandle[sockHandleIndex][tagindex], buffS, BUFFER_SIZE, 0);
     usleep(10);
 
-    bytesRecv = recv(sockHandle, buffR, BUFFER_SIZE, 0);
+    bytesRecv = recv(sockHandle[sockHandleIndex][tagindex], buffR, BUFFER_SIZE, 0);
     if (bytesRecv < 0)
     {
         return -1;
@@ -227,7 +227,7 @@ int setInfoWord(int index, int value)
     }
 }
 
-int getInfoDoubleWord(int index, unsigned *value)
+int getInfoDoubleWord(int index, unsigned *value,int sockHandleIndex, int tagindex)
 {
     if (index < 1 || index > 500)
         return -1;
@@ -259,10 +259,10 @@ int getInfoDoubleWord(int index, unsigned *value)
     buffS[22] = 0x00;
     buffS[23] = 0x00;
 
-    send(sockHandle, buffS, BUFFER_SIZE, 0);
+    send(sockHandle[sockHandleIndex][tagindex], buffS, BUFFER_SIZE, 0);
     usleep(10);
 
-    bytesRecv = recv(sockHandle, buffR, BUFFER_SIZE, 0);
+    bytesRecv = recv(sockHandle[sockHandleIndex][tagindex], buffR, BUFFER_SIZE, 0);
     if (bytesRecv < 0)
     {
         return -1;
@@ -278,7 +278,7 @@ int getInfoDoubleWord(int index, unsigned *value)
     }
 }
 
-int setInfoDoubleWord(int index, unsigned value)
+int setInfoDoubleWord(int index, unsigned value,int sockHandleIndex, int tagindex)
 {
     if (index < 1 || index > 500)
         return -1;
@@ -319,10 +319,10 @@ int setInfoDoubleWord(int index, unsigned value)
     buffS[23] = value3;
     buffS[24] = value4;
 
-    send(sockHandle, buffS, BUFFER_SIZE, 0);
+    send(sockHandle[sockHandleIndex][tagindex], buffS, BUFFER_SIZE, 0);
     usleep(10);
 
-    bytesRecv = recv(sockHandle, buffR, BUFFER_SIZE, 0);
+    bytesRecv = recv(sockHandle[sockHandleIndex][tagindex], buffR, BUFFER_SIZE, 0);
     if (bytesRecv < 0)
     {
         return -1;
@@ -333,7 +333,7 @@ int setInfoDoubleWord(int index, unsigned value)
     }
 }
 
-int getInfoBit(int index, int *value)
+int getInfoBit(int index, int *value,int sockHandleIndex, int tagindex)
 {
     if (index < 1 || index > 500)
         return -1;
@@ -365,10 +365,10 @@ int getInfoBit(int index, int *value)
     buffS[22] = 0x00;
     buffS[23] = 0x00;
 
-    send(sockHandle, buffS, BUFFER_SIZE, 0);
+    send(sockHandle[sockHandleIndex][tagindex], buffS, BUFFER_SIZE, 0);
     usleep(10);
 
-    bytesRecv = recv(sockHandle, buffR, BUFFER_SIZE, 0);
+    bytesRecv = recv(sockHandle[sockHandleIndex][tagindex], buffR, BUFFER_SIZE, 0);
     if (bytesRecv < 0)
     {
         return -1;
@@ -381,7 +381,7 @@ int getInfoBit(int index, int *value)
     }
 }
 
-int setInfoBit(int index, int value)
+int setInfoBit(int index, int value,int sockHandleIndex, int tagindex)
 {
     if (index < 1 || index > 500)
         return -1;
@@ -419,10 +419,10 @@ int setInfoBit(int index, int value)
     buffS[22] = data;
     buffS[23] = 0x00;
 
-    send(sockHandle, buffS, BUFFER_SIZE, 0);
+    send(sockHandle[sockHandleIndex][tagindex], buffS, BUFFER_SIZE, 0);
     usleep(10);
 
-    bytesRecv = recv(sockHandle, buffR, BUFFER_SIZE, 0);
+    bytesRecv = recv(sockHandle[sockHandleIndex][tagindex], buffR, BUFFER_SIZE, 0);
     if (bytesRecv < 0)
     {
         return -1;
@@ -433,7 +433,7 @@ int setInfoBit(int index, int value)
     }
 }
 
-int getFunctionInitMarker(int index, int *value)
+int getFunctionInitMarker(int index, int *value,int sockHandleIndex, int tagindex)
 {
     if (index < 1 || index > 1000)
         return -1;
@@ -465,10 +465,10 @@ int getFunctionInitMarker(int index, int *value)
     buffS[22] = 0x00;
     buffS[23] = 0x00;
 
-    send(sockHandle, buffS, BUFFER_SIZE, 0);
+    send(sockHandle[sockHandleIndex][tagindex], buffS, BUFFER_SIZE, 0);
     usleep(10);
 
-    bytesRecv = recv(sockHandle, buffR, BUFFER_SIZE, 0);
+    bytesRecv = recv(sockHandle[sockHandleIndex][tagindex], buffR, BUFFER_SIZE, 0);
     if (bytesRecv < 0)
     {
         return -1;
@@ -481,7 +481,7 @@ int getFunctionInitMarker(int index, int *value)
     }
 }
 
-int setFunctionInitMarker(int index, int value)
+int setFunctionInitMarker(int index, int value,int sockHandleIndex, int tagindex)
 {
     if (index < 1 || index > 1000)
         return -1;
@@ -519,10 +519,10 @@ int setFunctionInitMarker(int index, int value)
     buffS[22] = data;
     buffS[23] = 0x00;
 
-    send(sockHandle, buffS, BUFFER_SIZE, 0);
+    send(sockHandle[sockHandleIndex][tagindex], buffS, BUFFER_SIZE, 0);
     usleep(10);
 
-    bytesRecv = recv(sockHandle, buffR, BUFFER_SIZE, 0);
+    bytesRecv = recv(sockHandle[sockHandleIndex][tagindex], buffR, BUFFER_SIZE, 0);
     if (bytesRecv < 0)
     {
         return -1;
@@ -533,7 +533,7 @@ int setFunctionInitMarker(int index, int value)
     }
 }
 
-int getFunctionActivationMarker(int index, int *value)
+int getFunctionActivationMarker(int index, int *value,int sockHandleIndex, int tagindex)
 {
     if (index < 1 || index > 1000)
         return -1;
@@ -565,10 +565,10 @@ int getFunctionActivationMarker(int index, int *value)
     buffS[22] = 0x00;
     buffS[23] = 0x00;
 
-    send(sockHandle, buffS, BUFFER_SIZE, 0);
+    send(sockHandle[sockHandleIndex][tagindex], buffS, BUFFER_SIZE, 0);
     usleep(10);
 
-    bytesRecv = recv(sockHandle, buffR, BUFFER_SIZE, 0);
+    bytesRecv = recv(sockHandle[sockHandleIndex][tagindex], buffR, BUFFER_SIZE, 0);
     if (bytesRecv < 0)
     {
         return -1;
@@ -581,7 +581,7 @@ int getFunctionActivationMarker(int index, int *value)
     }
 }
 
-int setFunctionActivationMarker(int index, int value)
+int setFunctionActivationMarker(int index, int value,int sockHandleIndex, int tagindex)
 {
     if (index < 1 || index > 1000)
         return -1;
@@ -619,10 +619,10 @@ int setFunctionActivationMarker(int index, int value)
     buffS[22] = data;
     buffS[23] = 0x00;
 
-    send(sockHandle, buffS, BUFFER_SIZE, 0);
+    send(sockHandle[sockHandleIndex][tagindex], buffS, BUFFER_SIZE, 0);
     usleep(10);
 
-    bytesRecv = recv(sockHandle, buffR, BUFFER_SIZE, 0);
+    bytesRecv = recv(sockHandle[sockHandleIndex][tagindex], buffR, BUFFER_SIZE, 0);
     if (bytesRecv < 0)
     {
         return -1;
@@ -633,7 +633,7 @@ int setFunctionActivationMarker(int index, int value)
     }
 }
 
-int getFunctionQuitMarker(int index, int *value)
+int getFunctionQuitMarker(int index, int *value,int sockHandleIndex, int tagindex)
 {
     if (index < 1 || index > 1000)
         return -1;
@@ -665,10 +665,10 @@ int getFunctionQuitMarker(int index, int *value)
     buffS[22] = 0x00;
     buffS[23] = 0x00;
 
-    send(sockHandle, buffS, BUFFER_SIZE, 0);
+    send(sockHandle[sockHandleIndex][tagindex], buffS, BUFFER_SIZE, 0);
     usleep(10);
 
-    bytesRecv = recv(sockHandle, buffR, BUFFER_SIZE, 0);
+    bytesRecv = recv(sockHandle[sockHandleIndex][tagindex], buffR, BUFFER_SIZE, 0);
     if (bytesRecv < 0)
     {
         return -1;
@@ -681,7 +681,7 @@ int getFunctionQuitMarker(int index, int *value)
     }
 }
 
-int setFunctionQuitMarker(int index, int value)
+int setFunctionQuitMarker(int index, int value,int sockHandleIndex, int tagindex)
 {
     if (index < 1 || index > 1000)
         return -1;
@@ -719,10 +719,10 @@ int setFunctionQuitMarker(int index, int value)
     buffS[22] = data;
     buffS[23] = 0x00;
 
-    send(sockHandle, buffS, BUFFER_SIZE, 0);
+    send(sockHandle[sockHandleIndex][tagindex], buffS, BUFFER_SIZE, 0);
     usleep(10);
 
-    bytesRecv = recv(sockHandle, buffR, BUFFER_SIZE, 0);
+    bytesRecv = recv(sockHandle[sockHandleIndex][tagindex], buffR, BUFFER_SIZE, 0);
     if (bytesRecv < 0)
     {
         return -1;
@@ -733,7 +733,7 @@ int setFunctionQuitMarker(int index, int value)
     }
 }
 
-int getValueParameter(int index, int *value)
+int getValueParameter(int index, int *value,int sockHandleIndex, int tagindex)
 {
     if (index < 1 || index > 1000)
         return -1;
@@ -765,10 +765,10 @@ int getValueParameter(int index, int *value)
     buffS[22] = 0x00;
     buffS[23] = 0x00;
 
-    send(sockHandle, buffS, BUFFER_SIZE, 0);
+    send(sockHandle[sockHandleIndex][tagindex], buffS, BUFFER_SIZE, 0);
     usleep(10);
 
-    bytesRecv = recv(sockHandle, buffR, BUFFER_SIZE, 0);
+    bytesRecv = recv(sockHandle[sockHandleIndex][tagindex], buffR, BUFFER_SIZE, 0);
     if (bytesRecv < 0)
     {
         return -1;
@@ -782,7 +782,7 @@ int getValueParameter(int index, int *value)
     }
 }
 
-int setValueParameter(int index, int value)
+int setValueParameter(int index, int value,int sockHandleIndex, int tagindex)
 {
     if (index < 1 || index > 1000)
         return -1;
@@ -818,10 +818,10 @@ int setValueParameter(int index, int value)
     buffS[22] = value1;
     buffS[23] = value2;
 
-    send(sockHandle, buffS, BUFFER_SIZE, 0);
+    send(sockHandle[sockHandleIndex][tagindex], buffS, BUFFER_SIZE, 0);
     usleep(10);
 
-    bytesRecv = recv(sockHandle, buffR, BUFFER_SIZE, 0);
+    bytesRecv = recv(sockHandle[sockHandleIndex][tagindex], buffR, BUFFER_SIZE, 0);
     if (bytesRecv < 0)
     {
         return -1;
@@ -832,7 +832,7 @@ int setValueParameter(int index, int value)
     }
 }
 
-int getActualValueParameter(int index, int *value)
+int getActualValueParameter(int index, int *value,int sockHandleIndex, int tagindex)
 {
     if (index < 1 || index > 1000)
         return -1;
@@ -864,10 +864,10 @@ int getActualValueParameter(int index, int *value)
     buffS[22] = 0x00;
     buffS[23] = 0x00;
 
-    send(sockHandle, buffS, BUFFER_SIZE, 0);
+    send(sockHandle[sockHandleIndex][tagindex], buffS, BUFFER_SIZE, 0);
     usleep(10);
 
-    bytesRecv = recv(sockHandle, buffR, BUFFER_SIZE, 0);
+    bytesRecv = recv(sockHandle[sockHandleIndex][tagindex], buffR, BUFFER_SIZE, 0);
     if (bytesRecv < 0)
     {
         return -1;
@@ -881,7 +881,7 @@ int getActualValueParameter(int index, int *value)
     }
 }
 
-int setActualValueParameter(int index, int value)
+int setActualValueParameter(int index, int value,int sockHandleIndex, int tagindex)
 {
     if (index < 1 || index > 1000)
         return -1;
@@ -917,10 +917,10 @@ int setActualValueParameter(int index, int value)
     buffS[22] = value1;
     buffS[23] = value2;
 
-    send(sockHandle, buffS, BUFFER_SIZE, 0);
+    send(sockHandle[sockHandleIndex][tagindex], buffS, BUFFER_SIZE, 0);
     usleep(10);
 
-    bytesRecv = recv(sockHandle, buffR, BUFFER_SIZE, 0);
+    bytesRecv = recv(sockHandle[sockHandleIndex][tagindex], buffR, BUFFER_SIZE, 0);
     if (bytesRecv < 0)
     {
         return -1;
@@ -931,7 +931,7 @@ int setActualValueParameter(int index, int value)
     }
 }
 
-int getAlarms(int index, int *value)
+int getAlarms(int index, int *value,int sockHandleIndex, int tagindex)
 {
     if (index < 1 || index > 500)
         return -1;
@@ -965,10 +965,10 @@ int getAlarms(int index, int *value)
     buffS[24] = index1;
     buffS[24] = index2;
 
-    send(sockHandle, buffS, BUFFER_SIZE, 0);
+    send(sockHandle[sockHandleIndex][tagindex], buffS, BUFFER_SIZE, 0);
     usleep(10);
 
-    bytesRecv = recv(sockHandle, buffR, BUFFER_SIZE, 0);
+    bytesRecv = recv(sockHandle[sockHandleIndex][tagindex], buffR, BUFFER_SIZE, 0);
     if (bytesRecv < 0)
     {
         return -1;
@@ -981,7 +981,7 @@ int getAlarms(int index, int *value)
     }
 }
 
-int setAlarms(int index, int value)
+int setAlarms(int index, int value,int sockHandleIndex, int tagindex)
 {
     if (index < 1 || index > 500)
         return -1;
@@ -1019,10 +1019,10 @@ int setAlarms(int index, int value)
     buffS[22] = data;
     buffS[23] = 0x00;
 
-    send(sockHandle, buffS, BUFFER_SIZE, 0);
+    send(sockHandle[sockHandleIndex][tagindex], buffS, BUFFER_SIZE, 0);
     usleep(10);
 
-    bytesRecv = recv(sockHandle, buffR, BUFFER_SIZE, 0);
+    bytesRecv = recv(sockHandle[sockHandleIndex][tagindex], buffR, BUFFER_SIZE, 0);
     if (bytesRecv < 0)
     {
         return -1;
@@ -1033,7 +1033,7 @@ int setAlarms(int index, int value)
     }
 }
 
-int getAlarms2(int index, int *value)
+int getAlarms2(int index, int *value,int sockHandleIndex, int tagindex)
 {
     if (index < 1001 || index > 2000)
         return -1;
@@ -1067,10 +1067,10 @@ int getAlarms2(int index, int *value)
     buffS[24] = index1;
     buffS[25] = index2;
 
-    send(sockHandle, buffS, BUFFER_SIZE, 0);
+    send(sockHandle[sockHandleIndex][tagindex], buffS, BUFFER_SIZE, 0);
     usleep(10);
 
-    bytesRecv = recv(sockHandle, buffR, BUFFER_SIZE, 0);
+    bytesRecv = recv(sockHandle[sockHandleIndex][tagindex], buffR, BUFFER_SIZE, 0);
     if (bytesRecv < 0)
     {
         return -1;
@@ -1083,7 +1083,7 @@ int getAlarms2(int index, int *value)
     }
 }
 
-int setAlarms2(int index, int value)
+int setAlarms2(int index, int value,int sockHandleIndex, int tagindex)
 {
     if (index < 1001 || index > 2000)
         return -1;
@@ -1121,10 +1121,10 @@ int setAlarms2(int index, int value)
     buffS[22] = data;
     buffS[23] = 0x00;
 
-    send(sockHandle, buffS, BUFFER_SIZE, 0);
+    send(sockHandle[sockHandleIndex][tagindex], buffS, BUFFER_SIZE, 0);
     usleep(10);
 
-    bytesRecv = recv(sockHandle, buffR, BUFFER_SIZE, 0);
+    bytesRecv = recv(sockHandle[sockHandleIndex][tagindex], buffR, BUFFER_SIZE, 0);
     if (bytesRecv < 0)
     {
         return -1;
@@ -1135,7 +1135,7 @@ int setAlarms2(int index, int value)
     }
 }
 
-int getControlMarker(int index, int *value)
+int getControlMarker(int index, int *value,int sockHandleIndex, int tagindex)
 {
     if (index < 1 || index > 1000)
         return -1;
@@ -1167,10 +1167,10 @@ int getControlMarker(int index, int *value)
     buffS[22] = 0x00;
     buffS[23] = 0x00;
 
-    send(sockHandle, buffS, BUFFER_SIZE, 0);
+    send(sockHandle[sockHandleIndex][tagindex], buffS, BUFFER_SIZE, 0);
     usleep(10);
 
-    bytesRecv = recv(sockHandle, buffR, BUFFER_SIZE, 0);
+    bytesRecv = recv(sockHandle[sockHandleIndex][tagindex], buffR, BUFFER_SIZE, 0);
     if (bytesRecv < 0)
     {
         return -1;
@@ -1183,7 +1183,7 @@ int getControlMarker(int index, int *value)
     }
 }
 
-int setControlMarker(int index, int value)
+int setControlMarker(int index, int value,int sockHandleIndex, int tagindex)
 {
     if (index < 1 || index > 1000)
         return -1;
@@ -1221,10 +1221,10 @@ int setControlMarker(int index, int value)
     buffS[22] = data;
     buffS[23] = 0x00;
 
-    send(sockHandle, buffS, BUFFER_SIZE, 0);
+    send(sockHandle[sockHandleIndex][tagindex], buffS, BUFFER_SIZE, 0);
     usleep(10);
 
-    bytesRecv = recv(sockHandle, buffR, BUFFER_SIZE, 0);
+    bytesRecv = recv(sockHandle[sockHandleIndex][tagindex], buffR, BUFFER_SIZE, 0);
     if (bytesRecv < 0)
     {
         return -1;
@@ -1235,7 +1235,7 @@ int setControlMarker(int index, int value)
     }
 }
 
-int getControlWords(int index, int *value)
+int getControlWords(int index, int *value,int sockHandleIndex, int tagindex)
 {
     if (index < 1 || index > 200)
         return -1;
@@ -1267,10 +1267,10 @@ int getControlWords(int index, int *value)
     buffS[22] = 0x00;
     buffS[23] = 0x00;
 
-    send(sockHandle, buffS, BUFFER_SIZE, 0);
+    send(sockHandle[sockHandleIndex][tagindex], buffS, BUFFER_SIZE, 0);
     usleep(10);
 
-    bytesRecv = recv(sockHandle, buffR, BUFFER_SIZE, 0);
+    bytesRecv = recv(sockHandle[sockHandleIndex][tagindex], buffR, BUFFER_SIZE, 0);
     if (bytesRecv < 0)
     {
         return -1;
@@ -1284,7 +1284,7 @@ int getControlWords(int index, int *value)
     }
 }
 
-int setControlWords(int index, int value)
+int setControlWords(int index, int value,int sockHandleIndex, int tagindex)
 {
     if (index < 1 || index > 200)
         return -1;
@@ -1320,10 +1320,10 @@ int setControlWords(int index, int value)
     buffS[22] = value1;
     buffS[23] = value2;
 
-    send(sockHandle, buffS, BUFFER_SIZE, 0);
+    send(sockHandle[sockHandleIndex][tagindex], buffS, BUFFER_SIZE, 0);
     usleep(10);
 
-    bytesRecv = recv(sockHandle, buffR, BUFFER_SIZE, 0);
+    bytesRecv = recv(sockHandle[sockHandleIndex][tagindex], buffR, BUFFER_SIZE, 0);
     if (bytesRecv < 0)
     {
         return -1;
@@ -1334,7 +1334,7 @@ int setControlWords(int index, int value)
     }
 }
 
-int getControllerParameter(int index, int *value)
+int getControllerParameter(int index, int *value,int sockHandleIndex, int tagindex)
 {
     if (index < 1 || index > 4000)
         return -1;
@@ -1366,10 +1366,10 @@ int getControllerParameter(int index, int *value)
     buffS[22] = 0x00;
     buffS[23] = 0x00;
 
-    send(sockHandle, buffS, BUFFER_SIZE, 0);
+    send(sockHandle[sockHandleIndex][tagindex], buffS, BUFFER_SIZE, 0);
     usleep(10);
 
-    bytesRecv = recv(sockHandle, buffR, BUFFER_SIZE, 0);
+    bytesRecv = recv(sockHandle[sockHandleIndex][tagindex], buffR, BUFFER_SIZE, 0);
     if (bytesRecv < 0)
     {
         return -1;
@@ -1383,7 +1383,7 @@ int getControllerParameter(int index, int *value)
     }
 }
 
-int setControllerParameter(int index, int value)
+int setControllerParameter(int index, int value,int sockHandleIndex, int tagindex)
 {
     if (index < 1 || index > 4000)
         return -1;
@@ -1419,10 +1419,10 @@ int setControllerParameter(int index, int value)
     buffS[22] = value1;
     buffS[23] = value2;
 
-    send(sockHandle, buffS, BUFFER_SIZE, 0);
+    send(sockHandle[sockHandleIndex][tagindex], buffS, BUFFER_SIZE, 0);
     usleep(10);
 
-    bytesRecv = recv(sockHandle, buffR, BUFFER_SIZE, 0);
+    bytesRecv = recv(sockHandle[sockHandleIndex][tagindex], buffR, BUFFER_SIZE, 0);
     if (bytesRecv < 0)
     {
         return -1;
@@ -1433,7 +1433,7 @@ int setControllerParameter(int index, int value)
     }
 }
 
-int getTimers(int index, int *value)
+int getTimers(int index, int *value,int sockHandleIndex, int tagindex)
 {
     if (index < 1 || index > 500)
         return -1;
@@ -1465,10 +1465,10 @@ int getTimers(int index, int *value)
     buffS[22] = 0x00;
     buffS[23] = 0x00;
 
-    send(sockHandle, buffS, BUFFER_SIZE, 0);
+    send(sockHandle[sockHandleIndex][tagindex], buffS, BUFFER_SIZE, 0);
     usleep(10);
 
-    bytesRecv = recv(sockHandle, buffR, BUFFER_SIZE, 0);
+    bytesRecv = recv(sockHandle[sockHandleIndex][tagindex], buffR, BUFFER_SIZE, 0);
     if (bytesRecv < 0)
     {
         return -1;
@@ -1482,7 +1482,7 @@ int getTimers(int index, int *value)
     }
 }
 
-int setTimers(int index, int value)
+int setTimers(int index, int value,int sockHandleIndex, int tagindex)
 {
     if (index < 1 || index > 500)
         return -1;
@@ -1518,10 +1518,10 @@ int setTimers(int index, int value)
     buffS[22] = value1;
     buffS[23] = value2;
 
-    send(sockHandle, buffS, BUFFER_SIZE, 0);
+    send(sockHandle[sockHandleIndex][tagindex], buffS, BUFFER_SIZE, 0);
     usleep(10);
 
-    bytesRecv = recv(sockHandle, buffR, BUFFER_SIZE, 0);
+    bytesRecv = recv(sockHandle[sockHandleIndex][tagindex], buffR, BUFFER_SIZE, 0);
     if (bytesRecv < 0)
     {
         return -1;
@@ -1532,7 +1532,7 @@ int setTimers(int index, int value)
     }
 }
 
-int getMachineConstant(int index, int *value)
+int getMachineConstant(int index, int *value,int sockHandleIndex, int tagindex)
 {
     if (index < 1 || index > 500)
         return -1;
@@ -1564,10 +1564,10 @@ int getMachineConstant(int index, int *value)
     buffS[22] = 0x00;
     buffS[23] = 0x00;
 
-    send(sockHandle, buffS, BUFFER_SIZE, 0);
+    send(sockHandle[sockHandleIndex][tagindex], buffS, BUFFER_SIZE, 0);
     usleep(10);
 
-    bytesRecv = recv(sockHandle, buffR, BUFFER_SIZE, 0);
+    bytesRecv = recv(sockHandle[sockHandleIndex][tagindex], buffR, BUFFER_SIZE, 0);
     if (bytesRecv < 0)
     {
         return -1;
@@ -1581,7 +1581,7 @@ int getMachineConstant(int index, int *value)
     }
 }
 
-int setMachineConstant(int index, int value)
+int setMachineConstant(int index, int value,int sockHandleIndex, int tagindex)
 {
     if (index < 1 || index > 500)
         return -1;
@@ -1617,10 +1617,10 @@ int setMachineConstant(int index, int value)
     buffS[22] = value1;
     buffS[23] = value2;
 
-    send(sockHandle, buffS, BUFFER_SIZE, 0);
+    send(sockHandle[sockHandleIndex][tagindex], buffS, BUFFER_SIZE, 0);
     usleep(10);
 
-    bytesRecv = recv(sockHandle, buffR, BUFFER_SIZE, 0);
+    bytesRecv = recv(sockHandle[sockHandleIndex][tagindex], buffR, BUFFER_SIZE, 0);
     if (bytesRecv < 0)
     {
         return -1;
@@ -1631,7 +1631,7 @@ int setMachineConstant(int index, int value)
     }
 }
 
-int getBatchParameter(int index, int *value)
+int getBatchParameter(int index, int *value,int sockHandleIndex, int tagindex)
 {
     if (index < 1 || index > 50)
         return -1;
@@ -1663,10 +1663,10 @@ int getBatchParameter(int index, int *value)
     buffS[22] = 0x00;
     buffS[23] = 0x00;
 
-    send(sockHandle, buffS, BUFFER_SIZE, 0);
+    send(sockHandle[sockHandleIndex][tagindex], buffS, BUFFER_SIZE, 0);
     usleep(10);
 
-    bytesRecv = recv(sockHandle, buffR, BUFFER_SIZE, 0);
+    bytesRecv = recv(sockHandle[sockHandleIndex][tagindex], buffR, BUFFER_SIZE, 0);
     if (bytesRecv < 0)
     {
         return -1;
@@ -1680,7 +1680,7 @@ int getBatchParameter(int index, int *value)
     }
 }
 
-int setBatchParameter(int index, int value)
+int setBatchParameter(int index, int value,int sockHandleIndex, int tagindex)
 {
     if (index < 1 || index > 50)
         return -1;
@@ -1716,10 +1716,10 @@ int setBatchParameter(int index, int value)
     buffS[22] = value1;
     buffS[23] = value2;
 
-    send(sockHandle, buffS, BUFFER_SIZE, 0);
+    send(sockHandle[sockHandleIndex][tagindex], buffS, BUFFER_SIZE, 0);
     usleep(10);
 
-    bytesRecv = recv(sockHandle, buffR, BUFFER_SIZE, 0);
+    bytesRecv = recv(sockHandle[sockHandleIndex][tagindex], buffR, BUFFER_SIZE, 0);
     if (bytesRecv < 0)
     {
         return -1;
@@ -1730,7 +1730,7 @@ int setBatchParameter(int index, int value)
     }
 }
 
-int getBatchParameterDS737(int index, int *value)
+int getBatchParameterDS737(int index, int *value,int sockHandleIndex, int tagindex)
 {
     if (index < 1 || index > 50)
         return -1;
@@ -1762,10 +1762,10 @@ int getBatchParameterDS737(int index, int *value)
     buffS[22] = 0x00;
     buffS[23] = 0x00;
 
-    send(sockHandle, buffS, BUFFER_SIZE, 0);
+    send(sockHandle[sockHandleIndex][tagindex], buffS, BUFFER_SIZE, 0);
     usleep(10);
 
-    bytesRecv = recv(sockHandle, buffR, BUFFER_SIZE, 0);
+    bytesRecv = recv(sockHandle[sockHandleIndex][tagindex], buffR, BUFFER_SIZE, 0);
     if (bytesRecv < 0)
     {
         return -1;
@@ -1779,7 +1779,7 @@ int getBatchParameterDS737(int index, int *value)
     }
 }
 
-int setBatchParameterDS737(int index, int value)
+int setBatchParameterDS737(int index, int value,int sockHandleIndex, int tagindex)
 {
     if (index < 1 || index > 50)
         return -1;
@@ -1815,10 +1815,10 @@ int setBatchParameterDS737(int index, int value)
     buffS[22] = value1;
     buffS[23] = value2;
 
-    send(sockHandle, buffS, BUFFER_SIZE, 0);
+    send(sockHandle[sockHandleIndex][tagindex], buffS, BUFFER_SIZE, 0);
     usleep(10);
 
-    bytesRecv = recv(sockHandle, buffR, BUFFER_SIZE, 0);
+    bytesRecv = recv(sockHandle[sockHandleIndex][tagindex], buffR, BUFFER_SIZE, 0);
     if (bytesRecv < 0)
     {
         return -1;
@@ -1829,7 +1829,7 @@ int setBatchParameterDS737(int index, int value)
     }
 }
 
-int getBatchParameterNextBatch(int index, int *value)
+int getBatchParameterNextBatch(int index, int *value,int sockHandleIndex, int tagindex)
 {
     if (index < 1 || index > 50)
         return -1;
@@ -1861,10 +1861,10 @@ int getBatchParameterNextBatch(int index, int *value)
     buffS[22] = 0x00;
     buffS[23] = 0x00;
 
-    send(sockHandle, buffS, BUFFER_SIZE, 0);
+    send(sockHandle[sockHandleIndex][tagindex], buffS, BUFFER_SIZE, 0);
     usleep(10);
 
-    bytesRecv = recv(sockHandle, buffR, BUFFER_SIZE, 0);
+    bytesRecv = recv(sockHandle[sockHandleIndex][tagindex], buffR, BUFFER_SIZE, 0);
     if (bytesRecv < 0)
     {
         return -1;
@@ -1878,7 +1878,7 @@ int getBatchParameterNextBatch(int index, int *value)
     }
 }
 
-int setBatchParameterNextBatch(int index, int value)
+int setBatchParameterNextBatch(int index, int value,int sockHandleIndex, int tagindex)
 {
     if (index < 1 || index > 50)
         return -1;
@@ -1914,10 +1914,10 @@ int setBatchParameterNextBatch(int index, int value)
     buffS[22] = value1;
     buffS[23] = value2;
 
-    send(sockHandle, buffS, BUFFER_SIZE, 0);
+    send(sockHandle[sockHandleIndex][tagindex], buffS, BUFFER_SIZE, 0);
     usleep(10);
 
-    bytesRecv = recv(sockHandle, buffR, BUFFER_SIZE, 0);
+    bytesRecv = recv(sockHandle[sockHandleIndex][tagindex], buffR, BUFFER_SIZE, 0);
     if (bytesRecv < 0)
     {
         return -1;
@@ -1928,7 +1928,7 @@ int setBatchParameterNextBatch(int index, int value)
     }
 }
 
-int getMaintenanceCounter(int index, int *value)
+int getMaintenanceCounter(int index, int *value,int sockHandleIndex, int tagindex)
 {
     if (index < 1 || index > 200)
         return -1;
@@ -1960,10 +1960,10 @@ int getMaintenanceCounter(int index, int *value)
     buffS[22] = 0x00;
     buffS[23] = 0x00;
 
-    send(sockHandle, buffS, BUFFER_SIZE, 0);
+    send(sockHandle[sockHandleIndex][tagindex], buffS, BUFFER_SIZE, 0);
     usleep(10);
 
-    bytesRecv = recv(sockHandle, buffR, BUFFER_SIZE, 0);
+    bytesRecv = recv(sockHandle[sockHandleIndex][tagindex], buffR, BUFFER_SIZE, 0);
     if (bytesRecv < 0)
     {
         return -1;
@@ -1977,7 +1977,7 @@ int getMaintenanceCounter(int index, int *value)
     }
 }
 
-int setMaintenanceCounter(int index, int value)
+int setMaintenanceCounter(int index, int value,int sockHandleIndex, int tagindex)
 {
     if (index < 1 || index > 200)
         return -1;
@@ -2013,10 +2013,10 @@ int setMaintenanceCounter(int index, int value)
     buffS[22] = value1;
     buffS[23] = value2;
 
-    send(sockHandle, buffS, BUFFER_SIZE, 0);
+    send(sockHandle[sockHandleIndex][tagindex], buffS, BUFFER_SIZE, 0);
     usleep(10);
 
-    bytesRecv = recv(sockHandle, buffR, BUFFER_SIZE, 0);
+    bytesRecv = recv(sockHandle[sockHandleIndex][tagindex], buffR, BUFFER_SIZE, 0);
     if (bytesRecv < 0)
     {
         return -1;
@@ -2027,7 +2027,7 @@ int setMaintenanceCounter(int index, int value)
     }
 }
 
-int getActionButtons(int index, int *value)
+int getActionButtons(int index, int *value,int sockHandleIndex, int tagindex)
 {
     if (index < 401 || index > 1000)
         return -1;
@@ -2059,10 +2059,10 @@ int getActionButtons(int index, int *value)
     buffS[22] = 0x00;
     buffS[23] = 0x00;
 
-    send(sockHandle, buffS, BUFFER_SIZE, 0);
+    send(sockHandle[sockHandleIndex][tagindex], buffS, BUFFER_SIZE, 0);
     usleep(10);
 
-    bytesRecv = recv(sockHandle, buffR, BUFFER_SIZE, 0);
+    bytesRecv = recv(sockHandle[sockHandleIndex][tagindex], buffR, BUFFER_SIZE, 0);
     if (bytesRecv < 0)
     {
         return -1;
@@ -2075,7 +2075,7 @@ int getActionButtons(int index, int *value)
     }
 }
 
-int setActionButtons(int index, int value)
+int setActionButtons(int index, int value,int sockHandleIndex, int tagindex)
 {
     if (index < 401 || index > 1000)
         return -1;
@@ -2113,10 +2113,10 @@ int setActionButtons(int index, int value)
     buffS[22] = data;
     buffS[23] = 0x00;
 
-    send(sockHandle, buffS, BUFFER_SIZE, 0);
+    send(sockHandle[sockHandleIndex][tagindex], buffS, BUFFER_SIZE, 0);
     usleep(10);
 
-    bytesRecv = recv(sockHandle, buffR, BUFFER_SIZE, 0);
+    bytesRecv = recv(sockHandle[sockHandleIndex][tagindex], buffR, BUFFER_SIZE, 0);
     if (bytesRecv < 0)
     {
         return -1;

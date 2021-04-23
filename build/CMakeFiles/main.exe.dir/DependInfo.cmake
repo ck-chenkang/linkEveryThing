@@ -5,6 +5,10 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
   "/home/ck/codes/linkEveryThing/main.c" "/home/ck/codes/linkEveryThing/build/CMakeFiles/main.exe.dir/main.c.o"
+  "/home/ck/codes/linkEveryThing/src/cJSON.c" "/home/ck/codes/linkEveryThing/build/CMakeFiles/main.exe.dir/src/cJSON.c.o"
+  "/home/ck/codes/linkEveryThing/src/connectConfig.c" "/home/ck/codes/linkEveryThing/build/CMakeFiles/main.exe.dir/src/connectConfig.c.o"
+  "/home/ck/codes/linkEveryThing/src/setexAPI.c" "/home/ck/codes/linkEveryThing/build/CMakeFiles/main.exe.dir/src/setexAPI.c.o"
+  "/home/ck/codes/linkEveryThing/src/setexdata.c" "/home/ck/codes/linkEveryThing/build/CMakeFiles/main.exe.dir/src/setexdata.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 

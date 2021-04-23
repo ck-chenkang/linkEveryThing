@@ -150,6 +150,114 @@ main.c.s:
 	$(MAKE) -f CMakeFiles/main.exe.dir/build.make CMakeFiles/main.exe.dir/main.c.s
 .PHONY : main.c.s
 
+src/cJSON.o: src/cJSON.c.o
+
+.PHONY : src/cJSON.o
+
+# target to build an object file
+src/cJSON.c.o:
+	$(MAKE) -f CMakeFiles/main.exe.dir/build.make CMakeFiles/main.exe.dir/src/cJSON.c.o
+.PHONY : src/cJSON.c.o
+
+src/cJSON.i: src/cJSON.c.i
+
+.PHONY : src/cJSON.i
+
+# target to preprocess a source file
+src/cJSON.c.i:
+	$(MAKE) -f CMakeFiles/main.exe.dir/build.make CMakeFiles/main.exe.dir/src/cJSON.c.i
+.PHONY : src/cJSON.c.i
+
+src/cJSON.s: src/cJSON.c.s
+
+.PHONY : src/cJSON.s
+
+# target to generate assembly for a file
+src/cJSON.c.s:
+	$(MAKE) -f CMakeFiles/main.exe.dir/build.make CMakeFiles/main.exe.dir/src/cJSON.c.s
+.PHONY : src/cJSON.c.s
+
+src/connectConfig.o: src/connectConfig.c.o
+
+.PHONY : src/connectConfig.o
+
+# target to build an object file
+src/connectConfig.c.o:
+	$(MAKE) -f CMakeFiles/main.exe.dir/build.make CMakeFiles/main.exe.dir/src/connectConfig.c.o
+.PHONY : src/connectConfig.c.o
+
+src/connectConfig.i: src/connectConfig.c.i
+
+.PHONY : src/connectConfig.i
+
+# target to preprocess a source file
+src/connectConfig.c.i:
+	$(MAKE) -f CMakeFiles/main.exe.dir/build.make CMakeFiles/main.exe.dir/src/connectConfig.c.i
+.PHONY : src/connectConfig.c.i
+
+src/connectConfig.s: src/connectConfig.c.s
+
+.PHONY : src/connectConfig.s
+
+# target to generate assembly for a file
+src/connectConfig.c.s:
+	$(MAKE) -f CMakeFiles/main.exe.dir/build.make CMakeFiles/main.exe.dir/src/connectConfig.c.s
+.PHONY : src/connectConfig.c.s
+
+src/setexAPI.o: src/setexAPI.c.o
+
+.PHONY : src/setexAPI.o
+
+# target to build an object file
+src/setexAPI.c.o:
+	$(MAKE) -f CMakeFiles/main.exe.dir/build.make CMakeFiles/main.exe.dir/src/setexAPI.c.o
+.PHONY : src/setexAPI.c.o
+
+src/setexAPI.i: src/setexAPI.c.i
+
+.PHONY : src/setexAPI.i
+
+# target to preprocess a source file
+src/setexAPI.c.i:
+	$(MAKE) -f CMakeFiles/main.exe.dir/build.make CMakeFiles/main.exe.dir/src/setexAPI.c.i
+.PHONY : src/setexAPI.c.i
+
+src/setexAPI.s: src/setexAPI.c.s
+
+.PHONY : src/setexAPI.s
+
+# target to generate assembly for a file
+src/setexAPI.c.s:
+	$(MAKE) -f CMakeFiles/main.exe.dir/build.make CMakeFiles/main.exe.dir/src/setexAPI.c.s
+.PHONY : src/setexAPI.c.s
+
+src/setexdata.o: src/setexdata.c.o
+
+.PHONY : src/setexdata.o
+
+# target to build an object file
+src/setexdata.c.o:
+	$(MAKE) -f CMakeFiles/main.exe.dir/build.make CMakeFiles/main.exe.dir/src/setexdata.c.o
+.PHONY : src/setexdata.c.o
+
+src/setexdata.i: src/setexdata.c.i
+
+.PHONY : src/setexdata.i
+
+# target to preprocess a source file
+src/setexdata.c.i:
+	$(MAKE) -f CMakeFiles/main.exe.dir/build.make CMakeFiles/main.exe.dir/src/setexdata.c.i
+.PHONY : src/setexdata.c.i
+
+src/setexdata.s: src/setexdata.c.s
+
+.PHONY : src/setexdata.s
+
+# target to generate assembly for a file
+src/setexdata.c.s:
+	$(MAKE) -f CMakeFiles/main.exe.dir/build.make CMakeFiles/main.exe.dir/src/setexdata.c.s
+.PHONY : src/setexdata.c.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -162,6 +270,18 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... src/cJSON.o"
+	@echo "... src/cJSON.i"
+	@echo "... src/cJSON.s"
+	@echo "... src/connectConfig.o"
+	@echo "... src/connectConfig.i"
+	@echo "... src/connectConfig.s"
+	@echo "... src/setexAPI.o"
+	@echo "... src/setexAPI.i"
+	@echo "... src/setexAPI.s"
+	@echo "... src/setexdata.o"
+	@echo "... src/setexdata.i"
+	@echo "... src/setexdata.s"
 .PHONY : help
 
 

@@ -60,15 +60,15 @@ include CMakeFiles/main.exe.dir/flags.make
 CMakeFiles/main.exe.dir/main.c.o: CMakeFiles/main.exe.dir/flags.make
 CMakeFiles/main.exe.dir/main.c.o: ../main.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ck/codes/linkEveryThing/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/main.exe.dir/main.c.o"
-	arm-linux-gnueabihf-gcc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/main.exe.dir/main.c.o   -c /home/ck/codes/linkEveryThing/main.c
+	/usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/main.exe.dir/main.c.o   -c /home/ck/codes/linkEveryThing/main.c
 
 CMakeFiles/main.exe.dir/main.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/main.exe.dir/main.c.i"
-	arm-linux-gnueabihf-gcc  $(C_DEFINES) $(C_FLAGS) -E /home/ck/codes/linkEveryThing/main.c > CMakeFiles/main.exe.dir/main.c.i
+	/usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -E /home/ck/codes/linkEveryThing/main.c > CMakeFiles/main.exe.dir/main.c.i
 
 CMakeFiles/main.exe.dir/main.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/main.exe.dir/main.c.s"
-	arm-linux-gnueabihf-gcc  $(C_DEFINES) $(C_FLAGS) -S /home/ck/codes/linkEveryThing/main.c -o CMakeFiles/main.exe.dir/main.c.s
+	/usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -S /home/ck/codes/linkEveryThing/main.c -o CMakeFiles/main.exe.dir/main.c.s
 
 CMakeFiles/main.exe.dir/main.c.o.requires:
 
@@ -81,17 +81,121 @@ CMakeFiles/main.exe.dir/main.c.o.provides: CMakeFiles/main.exe.dir/main.c.o.requ
 CMakeFiles/main.exe.dir/main.c.o.provides.build: CMakeFiles/main.exe.dir/main.c.o
 
 
+CMakeFiles/main.exe.dir/src/connectConfig.c.o: CMakeFiles/main.exe.dir/flags.make
+CMakeFiles/main.exe.dir/src/connectConfig.c.o: ../src/connectConfig.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ck/codes/linkEveryThing/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/main.exe.dir/src/connectConfig.c.o"
+	/usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/main.exe.dir/src/connectConfig.c.o   -c /home/ck/codes/linkEveryThing/src/connectConfig.c
+
+CMakeFiles/main.exe.dir/src/connectConfig.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/main.exe.dir/src/connectConfig.c.i"
+	/usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -E /home/ck/codes/linkEveryThing/src/connectConfig.c > CMakeFiles/main.exe.dir/src/connectConfig.c.i
+
+CMakeFiles/main.exe.dir/src/connectConfig.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/main.exe.dir/src/connectConfig.c.s"
+	/usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -S /home/ck/codes/linkEveryThing/src/connectConfig.c -o CMakeFiles/main.exe.dir/src/connectConfig.c.s
+
+CMakeFiles/main.exe.dir/src/connectConfig.c.o.requires:
+
+.PHONY : CMakeFiles/main.exe.dir/src/connectConfig.c.o.requires
+
+CMakeFiles/main.exe.dir/src/connectConfig.c.o.provides: CMakeFiles/main.exe.dir/src/connectConfig.c.o.requires
+	$(MAKE) -f CMakeFiles/main.exe.dir/build.make CMakeFiles/main.exe.dir/src/connectConfig.c.o.provides.build
+.PHONY : CMakeFiles/main.exe.dir/src/connectConfig.c.o.provides
+
+CMakeFiles/main.exe.dir/src/connectConfig.c.o.provides.build: CMakeFiles/main.exe.dir/src/connectConfig.c.o
+
+
+CMakeFiles/main.exe.dir/src/cJSON.c.o: CMakeFiles/main.exe.dir/flags.make
+CMakeFiles/main.exe.dir/src/cJSON.c.o: ../src/cJSON.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ck/codes/linkEveryThing/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/main.exe.dir/src/cJSON.c.o"
+	/usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/main.exe.dir/src/cJSON.c.o   -c /home/ck/codes/linkEveryThing/src/cJSON.c
+
+CMakeFiles/main.exe.dir/src/cJSON.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/main.exe.dir/src/cJSON.c.i"
+	/usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -E /home/ck/codes/linkEveryThing/src/cJSON.c > CMakeFiles/main.exe.dir/src/cJSON.c.i
+
+CMakeFiles/main.exe.dir/src/cJSON.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/main.exe.dir/src/cJSON.c.s"
+	/usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -S /home/ck/codes/linkEveryThing/src/cJSON.c -o CMakeFiles/main.exe.dir/src/cJSON.c.s
+
+CMakeFiles/main.exe.dir/src/cJSON.c.o.requires:
+
+.PHONY : CMakeFiles/main.exe.dir/src/cJSON.c.o.requires
+
+CMakeFiles/main.exe.dir/src/cJSON.c.o.provides: CMakeFiles/main.exe.dir/src/cJSON.c.o.requires
+	$(MAKE) -f CMakeFiles/main.exe.dir/build.make CMakeFiles/main.exe.dir/src/cJSON.c.o.provides.build
+.PHONY : CMakeFiles/main.exe.dir/src/cJSON.c.o.provides
+
+CMakeFiles/main.exe.dir/src/cJSON.c.o.provides.build: CMakeFiles/main.exe.dir/src/cJSON.c.o
+
+
+CMakeFiles/main.exe.dir/src/setexdata.c.o: CMakeFiles/main.exe.dir/flags.make
+CMakeFiles/main.exe.dir/src/setexdata.c.o: ../src/setexdata.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ck/codes/linkEveryThing/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/main.exe.dir/src/setexdata.c.o"
+	/usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/main.exe.dir/src/setexdata.c.o   -c /home/ck/codes/linkEveryThing/src/setexdata.c
+
+CMakeFiles/main.exe.dir/src/setexdata.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/main.exe.dir/src/setexdata.c.i"
+	/usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -E /home/ck/codes/linkEveryThing/src/setexdata.c > CMakeFiles/main.exe.dir/src/setexdata.c.i
+
+CMakeFiles/main.exe.dir/src/setexdata.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/main.exe.dir/src/setexdata.c.s"
+	/usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -S /home/ck/codes/linkEveryThing/src/setexdata.c -o CMakeFiles/main.exe.dir/src/setexdata.c.s
+
+CMakeFiles/main.exe.dir/src/setexdata.c.o.requires:
+
+.PHONY : CMakeFiles/main.exe.dir/src/setexdata.c.o.requires
+
+CMakeFiles/main.exe.dir/src/setexdata.c.o.provides: CMakeFiles/main.exe.dir/src/setexdata.c.o.requires
+	$(MAKE) -f CMakeFiles/main.exe.dir/build.make CMakeFiles/main.exe.dir/src/setexdata.c.o.provides.build
+.PHONY : CMakeFiles/main.exe.dir/src/setexdata.c.o.provides
+
+CMakeFiles/main.exe.dir/src/setexdata.c.o.provides.build: CMakeFiles/main.exe.dir/src/setexdata.c.o
+
+
+CMakeFiles/main.exe.dir/src/setexAPI.c.o: CMakeFiles/main.exe.dir/flags.make
+CMakeFiles/main.exe.dir/src/setexAPI.c.o: ../src/setexAPI.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ck/codes/linkEveryThing/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/main.exe.dir/src/setexAPI.c.o"
+	/usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/main.exe.dir/src/setexAPI.c.o   -c /home/ck/codes/linkEveryThing/src/setexAPI.c
+
+CMakeFiles/main.exe.dir/src/setexAPI.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/main.exe.dir/src/setexAPI.c.i"
+	/usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -E /home/ck/codes/linkEveryThing/src/setexAPI.c > CMakeFiles/main.exe.dir/src/setexAPI.c.i
+
+CMakeFiles/main.exe.dir/src/setexAPI.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/main.exe.dir/src/setexAPI.c.s"
+	/usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -S /home/ck/codes/linkEveryThing/src/setexAPI.c -o CMakeFiles/main.exe.dir/src/setexAPI.c.s
+
+CMakeFiles/main.exe.dir/src/setexAPI.c.o.requires:
+
+.PHONY : CMakeFiles/main.exe.dir/src/setexAPI.c.o.requires
+
+CMakeFiles/main.exe.dir/src/setexAPI.c.o.provides: CMakeFiles/main.exe.dir/src/setexAPI.c.o.requires
+	$(MAKE) -f CMakeFiles/main.exe.dir/build.make CMakeFiles/main.exe.dir/src/setexAPI.c.o.provides.build
+.PHONY : CMakeFiles/main.exe.dir/src/setexAPI.c.o.provides
+
+CMakeFiles/main.exe.dir/src/setexAPI.c.o.provides.build: CMakeFiles/main.exe.dir/src/setexAPI.c.o
+
+
 # Object files for target main.exe
 main_exe_OBJECTS = \
-"CMakeFiles/main.exe.dir/main.c.o"
+"CMakeFiles/main.exe.dir/main.c.o" \
+"CMakeFiles/main.exe.dir/src/connectConfig.c.o" \
+"CMakeFiles/main.exe.dir/src/cJSON.c.o" \
+"CMakeFiles/main.exe.dir/src/setexdata.c.o" \
+"CMakeFiles/main.exe.dir/src/setexAPI.c.o"
 
 # External object files for target main.exe
 main_exe_EXTERNAL_OBJECTS =
 
 main.exe: CMakeFiles/main.exe.dir/main.c.o
+main.exe: CMakeFiles/main.exe.dir/src/connectConfig.c.o
+main.exe: CMakeFiles/main.exe.dir/src/cJSON.c.o
+main.exe: CMakeFiles/main.exe.dir/src/setexdata.c.o
+main.exe: CMakeFiles/main.exe.dir/src/setexAPI.c.o
 main.exe: CMakeFiles/main.exe.dir/build.make
 main.exe: CMakeFiles/main.exe.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/ck/codes/linkEveryThing/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking C executable main.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/ck/codes/linkEveryThing/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking C executable main.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/main.exe.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -100,6 +204,10 @@ CMakeFiles/main.exe.dir/build: main.exe
 .PHONY : CMakeFiles/main.exe.dir/build
 
 CMakeFiles/main.exe.dir/requires: CMakeFiles/main.exe.dir/main.c.o.requires
+CMakeFiles/main.exe.dir/requires: CMakeFiles/main.exe.dir/src/connectConfig.c.o.requires
+CMakeFiles/main.exe.dir/requires: CMakeFiles/main.exe.dir/src/cJSON.c.o.requires
+CMakeFiles/main.exe.dir/requires: CMakeFiles/main.exe.dir/src/setexdata.c.o.requires
+CMakeFiles/main.exe.dir/requires: CMakeFiles/main.exe.dir/src/setexAPI.c.o.requires
 
 .PHONY : CMakeFiles/main.exe.dir/requires
 

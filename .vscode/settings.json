@@ -21,6 +21,15 @@
         "*.tcc": "c",
         "cstdbool": "c",
         "typeinfo": "c",
-        "stdbool.h": "c"
+        "stdbool.h": "c",
+        "*.bak": "cpp",
+        "setexdata.h": "c",
+        "connectconfig.h": "c",
+        "edge_agent_option.h": "c",
+        "message.h": "c",
+        "edge_config.h": "c",
+        "setexapi.h": "c",
+        "pthread.h": "c",
+        "termios.h": "c"
     }
 }
