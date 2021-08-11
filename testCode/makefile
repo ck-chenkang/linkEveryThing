@@ -5,7 +5,7 @@ readArr.exe:
 readWholeFileContents.exe:
 	gcc -o readWholeFileContents.exe ./readWholeFileContents/main.c
 test.exe:
-	arm-linux-gnueabihf-gcc -o test test.c 
+	gcc -o test.exe test.c 
 structlen.exe:
 	gcc -o structlen.exe ./structLen/case1.c
 getCurrentTime.exe:

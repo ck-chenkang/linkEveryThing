@@ -157,7 +157,7 @@ int main()
     int fd;
     fd = open("/dev/ttyAP0", O_RDWR );
     // fd = open("/dev/ttyO1", O_RDWR );
-    // fd = open("/dev/ttyUSB5", O_RDWR );
+    // fd = open("/dev/ttyUSB0", O_RDWR );
     // fd = open("/dev/ttyS1", O_RDWR );
     if (fd == -1)
     {
